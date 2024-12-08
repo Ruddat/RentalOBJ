@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Nebenkostenabrechnung</title>
+    <style>
+        /* Basic reset and page styling */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            width: 100%;
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+        /* Page break styling */
+        .page-break {
+            page-break-before: always;
+        }
+        /* Header styling */
+        .header {
+            color: #ffb100;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subheader {
+            color: #555;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .client-info, .property-info {
+            display: inline-block;
+            width: 48%;
+            vertical-align: top;
+            font-size: 0.8em;
+            color: #333;
+        }
+        .summary, .highlight-box, .cost-breakdown h2, .distribution-table th, .footer {
+            font-size: 0.85em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: left;
+        }
+        th {
+            background-color: #ffb100;
+            color: #fff;
+            font-weight: bold;
+        }
+        .subtotal {
+            text-align: right;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1 Content -->
+    <div class="container">
+        <div class="header">Nebenkostenabrechnung</div>
+        <div class="subheader">
+            Erstellt im Auftrag von {{ $billingHeader->creator_name }}<br>
+            <span style="text-decoration: underline; font-size: 0.9em;">
+                {{ $billingHeader->creator_name }}, {{ $billingHeader->street }} {{ $billingHeader->house_number }}, {{ $billingHeader->zip_code }} {{ $billingHeader->city }}
+            </span>
+        </div>
+        <!-- Client and Property Info -->
+        <div class="client-info">
+            <p><strong>{{ $tenant->first_name }} {{ $tenant->last_name }}</strong><br>
+            {{ $tenant->street }}<br>
+            {{ $tenant->zip_code }} {{ $tenant->city }}</p>
+        </div>
+        <div class="property-info">
+            <p><strong>{{ $rentalObject->name }}</strong><br>
+            {{ $rentalObject->street }}<br>
+            {{ $rentalObject->zip_code }} {{ $rentalObject->city }}</p>
+            <p>Abrechnungszeitraum: {{ $billingRecord->billing_period }}</p>
+            <p>Abrechnung erstellt am {{ now()->format('d.m.Y') }}</p>
+        </div>
+
+        <!-- Summary, Detailed Cost Breakdown, and Heating Costs Tables -->
+        <!-- (Include content as in your first page template here) -->
+    </div>
+
+    <!-- Page Break -->
+    <div class="page-break"></div>
+
+    <!-- Page 2 Content -->
+    <div class="container">
+        <div class="header">Nebenkostenabrechnung</div>
+        <p>Abrechnungszeitraum vom 01.01.2024 bis 31.12.2024</p>
+        <div class="client-info">
+            <strong>Mieter</strong><br>
+            Dunja Kramaric<br>
+            Heidkrugsweg 31<br>
+            31234 Edemissen<br>
+            Phone: (123) 456-7890<br>
+            Email: tenant@example.com
+        </div>
+
+        <!-- Summary Table for Page 2, Detailed Cost Breakdown, and Distribution Table -->
+        <table class="summary-table">
+            <tr>
+                <td>Ihre Vorauszahlung im Abrechnungszeitraum:</td>
+                <td>2.000,00 EUR</td>
+            </tr>
+            <tr>
+                <td>Für ihre Wohnung errechneter Kostenanteil:</td>
+                <td>– 1.808,52 EUR</td>
+            </tr>
+            <tr>
+                <td>Ihr Guthaben:</td>
+                <td>191,48 EUR</td>
+            </tr>
+        </table>
+        <h2>Kostenaufstellung</h2>
+        <!-- Include additional breakdown tables and summary as per your second page template -->
+    </div>
+
+</body>
+</html>
