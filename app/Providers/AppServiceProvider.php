@@ -35,14 +35,7 @@ class AppServiceProvider extends ServiceProvider
             Route::post('/newsletter-signup', 'App\Http\Controllers\NewsletterController@signup');
         });
 
-        // Überprüfen, ob die Tabelle 'sys_settings' existiert
-        if (Schema::hasTable('sys_settings')) {
-            // Verwende das korrekte Modell, um Einstellungen zu laden
-            $settings = SysSetting::all()->pluck('value', 'key')->toArray();
 
-            // Speichere die Einstellungen in der app-Konfiguration
-            config(['app.settings' => $settings]);
-        }
 
             // Überprüfen, ob ein Cookie gesetzt ist und die Spracheinstellung speichern
 
